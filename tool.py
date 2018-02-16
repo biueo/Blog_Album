@@ -71,7 +71,7 @@ def compress(choose, des_dir, src_dir, file_list):
 def compress_photo():
     '''调用压缩图片的函数
     '''
-    src_dir, des_dir = "photos/", "min_photos/"
+    src_dir, des_dir = "max_photos/", "min_photos/"
     
     if directory_exists(src_dir):
         if not directory_exists(src_dir):
@@ -88,7 +88,8 @@ def compress_photo():
         if file_list_des[i] in file_list_src:
             file_list_src.remove(file_list_des[i])
     compress('4', des_dir, src_dir, file_list_src)
-"""
+
+
 def handle_photo():
     '''根据图片的文件名处理成需要的json格式的数据
     
@@ -128,9 +129,8 @@ def handle_photo():
             list_info[-1]['arr']['type'].append('image')
     list_info.reverse()  # 翻转
     final_dict = {"list": list_info}
-    with open("D:/Blog/Blog_Source/source/photos/data.json","w") as fp:
+    with open("/Users/ddc/Desktop/MyBlog/themes/next/source/lib/album/data.json","w") as fp:
         json.dump(final_dict, fp)
-"""
 def cut_photo():
     """裁剪算法
     
@@ -138,9 +138,12 @@ def cut_photo():
     调用Graphics类中的裁剪算法，将src_dir目录下的文件进行裁剪（裁剪成正方形）
     """
     src_dir = "photos/"
+    tar_dir='max_photos/'
     if directory_exists(src_dir):
         if not directory_exists(src_dir):
             make_directory(src_dir)
+        if not directory_exists(tar_dir):
+            make_directory(tar_dir)
         # business logic
         file_list = list_img_file(src_dir)
         # print file_list
@@ -148,7 +151,7 @@ def cut_photo():
             print_help()
             for infile in file_list:
                 img = Image.open(src_dir+infile)
-                Graphics(infile=src_dir+infile, outfile=src_dir + infile).cut_by_ratio()            
+                Graphics(infile=src_dir+infile, outfile=tar_dir + infile).cut_by_ratio()            
         else:
             pass
     else:
@@ -166,7 +169,7 @@ if __name__ == "__main__":
     cut_photo()        # 裁剪图片，裁剪成正方形，去中间部分
     compress_photo()   # 压缩图片，并保存到mini_photos文件夹下
     git_operation()    # 提交到github仓库
-    #handle_photo()     # 将文件处理成json格式，存到博客仓库中
+    handle_photo()     # 将文件处理成json格式，存到博客仓库中
     
     
     
