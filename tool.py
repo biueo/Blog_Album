@@ -163,12 +163,15 @@ def git_operation():
     os.system('git commit -m "add photos"')
     os.system('git push origin master')
 
-if __name__ == "__main__":
-    cut_photo()        # 裁剪图片，裁剪成正方形，去中间部分
-    compress_photo()   # 压缩图片，并保存到mini_photos文件夹下
-    git_operation()    # 提交到github仓库
-    handle_photo()     # 将文件处理成json格式，存到博客仓库中
-    
+# if __name__ == "__main__":
+#     cut_photo()        # 裁剪图片，裁剪成正方形，去中间部分
+#     compress_photo()   # 压缩图片，并保存到mini_photos文件夹下
+#     git_operation()    # 提交到github仓库
+#     handle_photo()     # 将文件处理成json格式，存到博客仓库中
+cut_photo()        # 裁剪图片，裁剪成正方形，去中间部分
+compress_photo()   # 压缩图片，并保存到mini_photos文件夹下
+git_operation()    # 提交到github仓库
+handle_photo()     # 将文件处理成json格式，存到博客仓库中   
     
     
     
